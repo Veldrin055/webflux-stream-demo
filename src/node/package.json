@@ -1,0 +1,10 @@
+{
+  "name": "chunk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Daniel Morrison",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
