@@ -23,4 +23,5 @@ for (let id=0; id < 100; id++) {
   let message = rand();
   req.write(JSON.stringify({ id, message }));
 }
+req.write(JSON.stringify([{id: 808, message: "this works"}, {id: 909, message: 'too!'}]));
 req.end();

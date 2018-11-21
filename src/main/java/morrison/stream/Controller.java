@@ -20,15 +20,17 @@ public class Controller {
     @PostMapping(consumes = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Mono<ResponseEntity<String>> update(@RequestBody Flux<Message> messages) {
         return messages
-            .map(Controller::logMessage)
+            .map(message -> {
+                System.out.println(message);
+                return message;
+            })
             .count()
-            .map(aLong -> ResponseEntity.ok("Counted " + aLong + " messages"))
+            .map(Controller::makeResponse)
             .doOnError(throwable -> System.err.println(throwable.getMessage()));
-
     }
 
-    static Message logMessage(Message message) {
-        System.out.println("{ id: " + message.getId() + ", message:" + message.getMessage() + " }");
-        return message;
+    private static ResponseEntity<String> makeResponse(final Long count) {
+        return ResponseEntity.ok("Counted " + count + " messages");
     }
+
 }

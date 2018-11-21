@@ -26,4 +26,12 @@ public class Message {
         this.message = message;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":" + (id == null ? "null" : "\"" + id + "\"") + ", " +
+                "\"message\":" + (message == null ? "null" : "\"" + message + "\"") +
+                "}";
+    }
 }
