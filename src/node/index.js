@@ -4,7 +4,8 @@ const options = { method: 'POST',
     'content-type': 'application/stream+json'
   }
 };
-const req = require('http').request(options, function (res) {
+
+const req = require('http').request(options, res => {
   res.on('data', function (chunk) {
     console.log('BODY: ' + chunk);
   });
@@ -23,5 +24,6 @@ for (let id=0; id < 100; id++) {
   let message = rand();
   req.write(JSON.stringify({ id, message }));
 }
+
 req.write(JSON.stringify([{id: 808, message: "this works"}, {id: 909, message: 'too!'}]));
 req.end();
